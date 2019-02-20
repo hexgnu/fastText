@@ -81,6 +81,9 @@ class _FastText():
         """
         return self.f.getSubwordId(subword)
 
+    def get_nn(self, word, k=10):
+        return self.f.getNN(word, k)
+
     def get_subwords(self, word):
         """
         Given a word, get the subwords and their indicies.

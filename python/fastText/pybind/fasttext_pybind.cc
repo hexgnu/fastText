@@ -329,7 +329,7 @@ PYBIND11_MODULE(fasttext_pybind, m) {
           "getWordVector",
           [](fasttext::FastText& m,
              fasttext::Vector& vec,
-             const std::string word) { m.getWordVector(vec, word); })
+             const std::string word) { return m.getWordVector(vec, word); })
       .def(
           "getSubwords",
           [](fasttext::FastText& m, const std::string word) {
@@ -340,5 +340,10 @@ PYBIND11_MODULE(fasttext_pybind, m) {
             return std::pair<std::vector<std::string>, std::vector<int32_t>>(
                 subwords, ngrams);
           })
+      .def(
+          "getNN",
+          [](fasttext::FastText& m,
+             const std::string word,
+             int32_t k) { return m.getNN(word, k); })
       .def("isQuant", [](fasttext::FastText& m) { return m.isQuant(); });
 }
